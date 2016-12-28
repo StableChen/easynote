@@ -1,0 +1,11 @@
+<litepal>
+
+    <dbname value="easy_note" />
+
+    <version value="1" />
+
+    <list>
+        <mapping class="whut.dongdong.easynote.bean.Note" />
+    </list>
+
+</litepal>
