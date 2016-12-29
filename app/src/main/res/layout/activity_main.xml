@@ -19,7 +19,7 @@
             android:id="@+id/view_white_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#33AAAAAA"
+            android:background="#66AAAAAA"
             android:visibility="gone" />
 
         <LinearLayout
