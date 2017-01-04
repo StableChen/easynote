@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="Set note image" />
+        android:text="设置背景图"
+        android:textSize="18sp" />
 
     <View
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Take a photo" />
+            android:text="拍照" />
 
         <View
             android:layout_width="1dp"
@@ -40,7 +41,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Choose a picture" />
+            android:text="相册" />
 
     </LinearLayout>
 

@@ -28,7 +28,7 @@ import whut.dongdong.easynote.common.Constant;
 import whut.dongdong.easynote.fragment.EasyNoteFragment;
 import whut.dongdong.easynote.fragment.SecretNoteFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ViewPager vpMain;
     private View circleIndicator;
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent);
                     dialog.dismiss();
                 } else {
-                    Toast.makeText(MainActivity.this, "please set a title", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "请设置标题", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (System.currentTimeMillis() - currentTime < 2000) {
             finish();
         } else {
-            Toast.makeText(this, "press again to quit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
             currentTime = System.currentTimeMillis();
         }
     }

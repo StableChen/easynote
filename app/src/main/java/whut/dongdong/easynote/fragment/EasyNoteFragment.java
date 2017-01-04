@@ -16,7 +16,6 @@ import java.util.List;
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.adapter.NoteAdapter;
 import whut.dongdong.easynote.bean.Note;
-import whut.dongdong.easynote.common.NoteDeleteListener;
 
 /**
  * Created by dongdong on 2016/12/27.
@@ -42,18 +41,7 @@ public class EasyNoteFragment extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
         noteList = DataSupport.where("isSecret = ?", "0").find(Note.class);
-        noteAdapter = new NoteAdapter(noteList, new NoteDeleteListener() {
-            @Override
-            public void onNoteDelete(int noteId) {
-                for (Note note : noteList) {
-                    if (note.getId() == noteId) {
-                        noteList.remove(note);
-                        break;
-                    }
-                }
-                noteAdapter.notifyDataSetChanged();
-            }
-        });
+        noteAdapter = new NoteAdapter(noteList);
         recyclerView.setAdapter(noteAdapter);
     }
 

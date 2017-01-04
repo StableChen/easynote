@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/edit"
+        android:title="编辑/预览"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/change_title"
+        android:title="更改标题"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/set_notify"
+        android:title="设置提醒"
+        app:showAsAction="never" />
+
+</menu>

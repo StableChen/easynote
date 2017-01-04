@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="Set Title" />
+        android:hint="设置标题"
+        android:textSize="18sp" />
 
     <View
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="cancel" />
+            android:text="取消" />
 
         <View
             android:layout_width="1dp"
@@ -41,7 +42,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="create"
+            android:text="创建"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>

@@ -20,7 +20,6 @@ import java.util.List;
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.activity.NoteDetailActivity;
 import whut.dongdong.easynote.bean.Note;
-import whut.dongdong.easynote.common.NoteDeleteListener;
 
 /**
  * Created by dongdong on 2016/12/29.
@@ -30,11 +29,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private Context context;
     private List<Note> noteList;
-    private NoteDeleteListener deleteListener;
 
-    public NoteAdapter(List<Note> noteList, NoteDeleteListener deleteListener) {
+    public NoteAdapter(List<Note> noteList) {
         this.noteList = noteList;
-        this.deleteListener = deleteListener;
     }
 
     @Override
@@ -55,7 +52,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                showDeleteNoteDialog(noteList.get(holder.getAdapterPosition()).getId());
+                showDeleteNoteDialog(noteList.get(holder.getAdapterPosition()));
                 return true;
             }
         });
@@ -79,7 +76,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return noteList.size();
     }
 
-    private void showDeleteNoteDialog(final int noteId) {
+    private void showDeleteNoteDialog(final Note note) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         final AlertDialog dialog = builder.create();
         View dialogView = View.inflate(context, R.layout.view_delete_note_dialog, null);
@@ -95,8 +92,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataSupport.delete(Note.class, noteId);
-                deleteListener.onNoteDelete(noteId);
+                DataSupport.delete(Note.class, note.getId());
+                notifyItemRemoved(noteList.indexOf(note));
+                noteList.remove(note);
                 dialog.dismiss();
             }
         });
