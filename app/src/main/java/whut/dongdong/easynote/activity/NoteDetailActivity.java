@@ -45,9 +45,11 @@ public class NoteDetailActivity extends BaseActivity {
     private EditText noteContent;
     private TextView noteLocation;
     private ImageView noteImage;
+    private TextView noteUpdateTime;
     private CollapsingToolbarLayout collapsingToolbar;
     private boolean isEdit;
     private boolean hasEdit;
+    private SimpleDateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class NoteDetailActivity extends BaseActivity {
             note.setTitle(noteTitle);
             note.setSecret(noteType == Constant.TYPE_SECRET_NOTE ? true : false);
             note.setCreateTime(System.currentTimeMillis());
+            note.setUpdateTime(System.currentTimeMillis());
             note.save();
             isEdit = true;
             initLocationClient();
@@ -80,10 +83,11 @@ public class NoteDetailActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         noteImage = (ImageView) findViewById(R.id.note_image);
         FloatingActionButton fabSetImage = (FloatingActionButton) findViewById(R.id.fab_set_image);
-        TextView noteTime = (TextView) findViewById(R.id.note_time);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        noteTime.setText("创建时间: " + dateFormat.format(note.getCreateTime()) +
-                (note.getUpdateTime() == 0 ? "" : "\n" + "更新时间: " + dateFormat.format(note.getUpdateTime())));
+        TextView noteCreateTime = (TextView) findViewById(R.id.note_create_time);
+        noteUpdateTime = (TextView) findViewById(R.id.note_update_time);
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        noteCreateTime.setText("创建时间: " + dateFormat.format(note.getCreateTime()));
+        noteUpdateTime.setText("更新时间: " + dateFormat.format(note.getUpdateTime()));
         noteLocation = (TextView) findViewById(R.id.note_location);
         noteLocation.setText(note.getLocation() == null ? "" : note.getLocation());
         noteContent = (EditText) findViewById(R.id.note_content);
@@ -172,13 +176,8 @@ public class NoteDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (hasEdit) {
-            note.setUpdateTime(System.currentTimeMillis());
-            note.setContent(noteContent.getText().toString());
-            note.save();
-        }
+    public void onBackPressed() {
+        checkEditState();
     }
 
     @Override
@@ -191,10 +190,15 @@ public class NoteDetailActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                checkEditState();
                 break;
             case R.id.edit:
                 if (isEdit) {
+                    if (hasEdit) {
+                        note.setContent(noteContent.getText().toString());
+                        saveNote();
+                        hasEdit = false;
+                    }
                     noteContent.setEnabled(false);
                     isEdit = false;
                 } else {
@@ -211,6 +215,48 @@ public class NoteDetailActivity extends BaseActivity {
                 break;
         }
         return true;
+    }
+
+    private void checkEditState() {
+        if (hasEdit) {
+            showSaveNoteDialog();
+        } else {
+            finish();
+        }
+    }
+
+    private void saveNote() {
+        note.setUpdateTime(System.currentTimeMillis());
+        note.save();
+        noteUpdateTime.setText("更新时间: " + dateFormat.format(note.getUpdateTime()));
+    }
+
+    private void showSaveNoteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog dialog = builder.create();
+        View dialogView = View.inflate(this, R.layout.view_save_note_dialog, null);
+        dialog.setView(dialogView);
+        View cancel = dialogView.findViewById(R.id.cancel);
+        View save = dialogView.findViewById(R.id.save);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                note.setContent(noteContent.getText().toString());
+                saveNote();
+                hasEdit = false;
+                dialog.dismiss();
+                noteContent.setEnabled(false);
+                isEdit = false;
+            }
+        });
+        dialog.show();
     }
 
     private void showChangeTitleDialog() {
@@ -234,7 +280,7 @@ public class NoteDetailActivity extends BaseActivity {
                 if (!title.equals("")) {
                     collapsingToolbar.setTitle(title);
                     note.setTitle(title);
-                    hasEdit = true;
+                    saveNote();
                     dialog.dismiss();
                 } else {
                     Toast.makeText(NoteDetailActivity.this, "请输入新标题", Toast.LENGTH_SHORT).show();
@@ -308,8 +354,7 @@ public class NoteDetailActivity extends BaseActivity {
                         }
                     }
                     note.setImageUrl(imageUri.getPath());
-                    note.save();
-                    hasEdit = true;
+                    saveNote();
                 }
                 break;
         }

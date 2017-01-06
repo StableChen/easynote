@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private View createEasyNote;
     private View createSecretNote;
     private View whiteBg;
+    private Button btSettings;
     private boolean isMenuOpen;
     private int halfWindowWidth;
 
@@ -76,6 +78,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         createEasyNote = findViewById(R.id.create_easy_note);
         createSecretNote = findViewById(R.id.create_secret_note);
         whiteBg = findViewById(R.id.view_white_bg);
+        btSettings = (Button) findViewById(R.id.bt_settings);
 
         tvEasyNote.setOnClickListener(this);
         tvSecretNote.setOnClickListener(this);
@@ -83,6 +86,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         createEasyNote.setOnClickListener(this);
         createSecretNote.setOnClickListener(this);
         whiteBg.setOnClickListener(this);
+        btSettings.setOnClickListener(this);
 
         fragmentList.add(new EasyNoteFragment());
         fragmentList.add(new SecretNoteFragment());
@@ -157,6 +161,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.create_secret_note:
                 closeMenuAnim();
                 showCreateNoteDialog(Constant.TYPE_SECRET_NOTE);
+                break;
+            case R.id.bt_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
     }

@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/edit"
-        android:title="编辑/预览"
+        android:title="编辑/保存"
         app:showAsAction="never" />
 
     <item

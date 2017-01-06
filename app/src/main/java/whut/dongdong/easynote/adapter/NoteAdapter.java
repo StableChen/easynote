@@ -20,6 +20,8 @@ import java.util.List;
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.activity.NoteDetailActivity;
 import whut.dongdong.easynote.bean.Note;
+import whut.dongdong.easynote.common.Constant;
+import whut.dongdong.easynote.common.SPUtil;
 
 /**
  * Created by dongdong on 2016/12/29.
@@ -68,7 +70,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             Glide.with(context).load(note.getImageUrl()).into(holder.noteImage);
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        holder.noteTime.setText(dateFormat.format(note.getCreateTime()));
+        int sortOrder = SPUtil.getInt(context, Constant.SORT_ORDER);
+        if (sortOrder == -1 || sortOrder == Constant.SORT_BY_CREATE_TIME) {
+            holder.noteTime.setText(dateFormat.format(note.getCreateTime()));
+        } else if (sortOrder == Constant.SORT_BY_UPDATE_TIME) {
+            holder.noteTime.setText(dateFormat.format(note.getUpdateTime()));
+        }
     }
 
     @Override

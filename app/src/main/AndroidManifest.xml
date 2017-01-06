@@ -34,12 +34,19 @@
         </activity>
         <activity
             android:name=".activity.NoteDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SortOrderActivity"
             android:screenOrientation="portrait"></activity>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
     </application>
 
 </manifest>

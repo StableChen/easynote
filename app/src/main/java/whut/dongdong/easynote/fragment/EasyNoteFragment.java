@@ -16,6 +16,8 @@ import java.util.List;
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.adapter.NoteAdapter;
 import whut.dongdong.easynote.bean.Note;
+import whut.dongdong.easynote.common.Constant;
+import whut.dongdong.easynote.common.SPUtil;
 
 /**
  * Created by dongdong on 2016/12/27.
@@ -40,7 +42,12 @@ public class EasyNoteFragment extends Fragment {
         super.onStart();
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        noteList = DataSupport.where("isSecret = ?", "0").find(Note.class);
+        int sortOrder = SPUtil.getInt(getActivity(), Constant.SORT_ORDER);
+        if (sortOrder == -1 || sortOrder == Constant.SORT_BY_CREATE_TIME) {
+            noteList = DataSupport.where("isSecret = ?", "0").order("createTime desc").find(Note.class);
+        } else if (sortOrder == Constant.SORT_BY_UPDATE_TIME) {
+            noteList = DataSupport.where("isSecret = ?", "0").order("updateTime desc").find(Note.class);
+        }
         noteAdapter = new NoteAdapter(noteList);
         recyclerView.setAdapter(noteAdapter);
     }
