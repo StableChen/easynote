@@ -65,7 +65,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Note note = noteList.get(position);
         if (note.getImageUrl() == null) {
-            Glide.with(context).load(R.drawable.default_note_image).into(holder.noteImage);
+            int imageID = SPUtil.getInt(context, Constant.DEFAULT_IMAGE);
+            if (imageID == -1) {
+                Glide.with(context).load(R.drawable.default_note_image0).into(holder.noteImage);
+            } else {
+                Glide.with(context).load(imageID).into(holder.noteImage);
+            }
         } else {
             Glide.with(context).load(note.getImageUrl()).into(holder.noteImage);
         }

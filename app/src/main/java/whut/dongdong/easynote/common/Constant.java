@@ -15,6 +15,8 @@ public interface Constant {
     int SORT_BY_CREATE_TIME = 0;
     int SORT_BY_UPDATE_TIME = 1;
 
+    String DEFAULT_IMAGE = "default_image";
+
     String NOTE_IMAGE_PATH = MyApplication.getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath();
 
 }

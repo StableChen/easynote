@@ -36,6 +36,7 @@ import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.bean.Note;
 import whut.dongdong.easynote.common.Constant;
 import whut.dongdong.easynote.common.PermissionListener;
+import whut.dongdong.easynote.common.SPUtil;
 
 public class NoteDetailActivity extends BaseActivity {
 
@@ -124,7 +125,12 @@ public class NoteDetailActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         if (note.getImageUrl() == null) {
-            Glide.with(this).load(R.drawable.default_note_image).into(noteImage);
+            int imageID = SPUtil.getInt(this, Constant.DEFAULT_IMAGE);
+            if (imageID == -1) {
+                Glide.with(this).load(R.drawable.default_note_image0).into(noteImage);
+            } else {
+                Glide.with(this).load(imageID).into(noteImage);
+            }
         } else {
             Glide.with(this).load(note.getImageUrl()).into(noteImage);
         }

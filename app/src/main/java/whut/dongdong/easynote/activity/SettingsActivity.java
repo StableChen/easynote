@@ -1,11 +1,9 @@
 package whut.dongdong.easynote.activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -56,7 +54,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 startActivity(new Intent(this, SortOrderActivity.class));
                 break;
             case R.id.choose_default_image:
-
+                startActivity(new Intent(this, DefaultImageActivity.class));
                 break;
             case R.id.about:
 

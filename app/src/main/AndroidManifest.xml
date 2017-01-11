@@ -40,6 +40,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SortOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DefaultImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AboutActivity"
             android:screenOrientation="portrait"></activity>
 
         <service
