@@ -23,6 +23,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         View sortOrder = findViewById(R.id.sort_order);
         View chooseDefaultImage = findViewById(R.id.choose_default_image);
+        View secretNotePassword = findViewById(R.id.secret_note_password);
         View about = findViewById(R.id.about);
 
         setSupportActionBar(toolbar);
@@ -34,6 +35,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
         sortOrder.setOnClickListener(this);
         chooseDefaultImage.setOnClickListener(this);
+        secretNotePassword.setOnClickListener(this);
         about.setOnClickListener(this);
     }
 
@@ -52,6 +54,9 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.sort_order:
                 startActivity(new Intent(this, SortOrderActivity.class));
+                break;
+            case R.id.secret_note_password:
+                startActivity(new Intent(this, SetPasswordActivity.class));
                 break;
             case R.id.choose_default_image:
                 startActivity(new Intent(this, DefaultImageActivity.class));

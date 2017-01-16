@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
@@ -19,13 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.common.Constant;
+import whut.dongdong.easynote.common.SPUtil;
+import whut.dongdong.easynote.common.ToastUtil;
 import whut.dongdong.easynote.fragment.EasyNoteFragment;
 import whut.dongdong.easynote.fragment.SecretNoteFragment;
 
@@ -49,6 +49,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SPUtil.put(this, Constant.SHOULD_CHECK_PASSWORD, true);
         initView();
     }
 
@@ -193,7 +194,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     startActivity(intent);
                     dialog.dismiss();
                 } else {
-                    Toast.makeText(MainActivity.this, "请设置标题", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(MainActivity.this, "请设置标题");
                 }
             }
         });
@@ -254,7 +255,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (System.currentTimeMillis() - currentTime < 2000) {
             finish();
         } else {
-            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "再按一次退出应用");
             currentTime = System.currentTimeMillis();
         }
     }

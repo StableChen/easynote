@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -37,6 +36,7 @@ import whut.dongdong.easynote.bean.Note;
 import whut.dongdong.easynote.common.Constant;
 import whut.dongdong.easynote.common.PermissionListener;
 import whut.dongdong.easynote.common.SPUtil;
+import whut.dongdong.easynote.common.ToastUtil;
 
 public class NoteDetailActivity extends BaseActivity {
 
@@ -157,8 +157,7 @@ public class NoteDetailActivity extends BaseActivity {
 
                     @Override
                     public void onDenied(List<String> deniedPermissions) {
-                        Toast.makeText(NoteDetailActivity.this, "拒绝权限无法显示当前位置", Toast.LENGTH_SHORT)
-                                .show();
+                        ToastUtil.showToast(NoteDetailActivity.this, "拒绝权限无法显示当前位置");
                     }
                 });
     }
@@ -289,7 +288,7 @@ public class NoteDetailActivity extends BaseActivity {
                     saveNote();
                     dialog.dismiss();
                 } else {
-                    Toast.makeText(NoteDetailActivity.this, "请输入新标题", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(NoteDetailActivity.this, "请输入新标题");
                 }
             }
         });

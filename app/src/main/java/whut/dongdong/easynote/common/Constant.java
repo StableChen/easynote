@@ -15,6 +15,9 @@ public interface Constant {
     int SORT_BY_CREATE_TIME = 0;
     int SORT_BY_UPDATE_TIME = 1;
 
+    String SECRET_NOTE_PASSWORD = "secret_note_password";
+    String SHOULD_CHECK_PASSWORD = "should_check_password";
+
     String DEFAULT_IMAGE = "default_image";
 
     String NOTE_IMAGE_PATH = MyApplication.getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath();

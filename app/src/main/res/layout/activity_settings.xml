@@ -54,6 +54,37 @@
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
+        android:id="@+id/secret_note_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="6dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="设置SecretNote密码"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:background="@drawable/arrow_right" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
         android:id="@+id/choose_default_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

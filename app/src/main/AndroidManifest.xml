@@ -42,11 +42,14 @@
             android:name=".activity.SortOrderActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.SetPasswordActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".activity.DefaultImageActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AboutActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <service
             android:name="com.baidu.location.f"
