@@ -1,4 +1,4 @@
-package whut.dongdong.easynote.common;
+package whut.dongdong.easynote.listener;
 
 import java.util.List;
 

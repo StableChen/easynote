@@ -11,6 +11,7 @@ public class Note extends DataSupport {
     private int id;
     private long createTime;
     private long updateTime;
+    private long notifyTime;
     private boolean isSecret;
     private String title;
     private String content;
@@ -39,6 +40,14 @@ public class Note extends DataSupport {
 
     public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public long getNotifyTime() {
+        return notifyTime;
+    }
+
+    public void setNotifyTime(long notifyTime) {
+        this.notifyTime = notifyTime;
     }
 
     public boolean isSecret() {

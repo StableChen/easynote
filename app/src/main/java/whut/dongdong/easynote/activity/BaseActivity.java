@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import whut.dongdong.easynote.common.ActivityCollector;
-import whut.dongdong.easynote.common.PermissionListener;
+import whut.dongdong.easynote.listener.PermissionListener;
 
 /**
  * Created by dongdong on 2017/1/4.

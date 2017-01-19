@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import whut.dongdong.easynote.R;
-import whut.dongdong.easynote.common.ImageSelectListener;
+import whut.dongdong.easynote.listener.ImageSelectListener;
 
 /**
  * Created by dongdong on 2017/1/11.

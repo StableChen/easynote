@@ -34,7 +34,7 @@ import java.util.List;
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.bean.Note;
 import whut.dongdong.easynote.common.Constant;
-import whut.dongdong.easynote.common.PermissionListener;
+import whut.dongdong.easynote.listener.PermissionListener;
 import whut.dongdong.easynote.common.SPUtil;
 import whut.dongdong.easynote.common.ToastUtil;
 
@@ -75,7 +75,7 @@ public class NoteDetailActivity extends BaseActivity {
             isEdit = true;
             initLocationClient();
         } else {
-            note = DataSupport.where("id = ?", noteId + "").find(Note.class).get(0);
+            note = DataSupport.find(Note.class, noteId);
         }
     }
 
@@ -216,7 +216,9 @@ public class NoteDetailActivity extends BaseActivity {
                 showChangeTitleDialog();
                 break;
             case R.id.set_notify:
-
+                Intent intent = new Intent(this, SetNotificationActivity.class);
+                intent.putExtra("noteId", note.getId());
+                startActivity(intent);
                 break;
         }
         return true;

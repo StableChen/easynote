@@ -62,7 +62,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 startActivity(new Intent(this, DefaultImageActivity.class));
                 break;
             case R.id.about:
-
+                startActivity(new Intent(this, AboutActivity.class));
                 break;
         }
     }

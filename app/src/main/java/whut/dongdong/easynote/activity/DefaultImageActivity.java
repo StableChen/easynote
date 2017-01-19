@@ -16,7 +16,7 @@ import java.util.List;
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.adapter.ImageAdapter;
 import whut.dongdong.easynote.common.Constant;
-import whut.dongdong.easynote.common.ImageSelectListener;
+import whut.dongdong.easynote.listener.ImageSelectListener;
 import whut.dongdong.easynote.common.SPUtil;
 
 public class DefaultImageActivity extends BaseActivity {
