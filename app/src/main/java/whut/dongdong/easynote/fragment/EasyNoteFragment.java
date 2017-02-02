@@ -28,12 +28,14 @@ public class EasyNoteFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<Note> noteList;
     private NoteAdapter noteAdapter;
+    private View tvEmpty;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_easy_note, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        tvEmpty = view.findViewById(R.id.tv_empty);
         return view;
     }
 
@@ -47,6 +49,11 @@ public class EasyNoteFragment extends Fragment {
             noteList = DataSupport.where("isSecret = ?", "0").order("createTime desc").find(Note.class);
         } else if (sortOrder == Constant.SORT_BY_UPDATE_TIME) {
             noteList = DataSupport.where("isSecret = ?", "0").order("updateTime desc").find(Note.class);
+        }
+        if (noteList.size() == 0) {
+            tvEmpty.setVisibility(View.VISIBLE);
+        } else {
+            tvEmpty.setVisibility(View.GONE);
         }
         noteAdapter = new NoteAdapter(noteList);
         recyclerView.setAdapter(noteAdapter);

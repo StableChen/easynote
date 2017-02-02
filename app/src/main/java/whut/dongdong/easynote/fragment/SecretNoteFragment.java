@@ -35,6 +35,7 @@ public class SecretNoteFragment extends Fragment {
     private LinearLayout passwordLayout;
     private EditText etPassword;
     private Button btConfirm;
+    private View tvEmpty;
 
     @Nullable
     @Override
@@ -44,7 +45,7 @@ public class SecretNoteFragment extends Fragment {
         passwordLayout = (LinearLayout) view.findViewById(R.id.password_layout);
         etPassword = (EditText) view.findViewById(R.id.et_password);
         btConfirm = (Button) view.findViewById(R.id.bt_confirm);
-
+        tvEmpty = view.findViewById(R.id.tv_empty);
         return view;
     }
 
@@ -58,6 +59,11 @@ public class SecretNoteFragment extends Fragment {
             noteList = DataSupport.where("isSecret = ?", "1").order("createTime desc").find(Note.class);
         } else if (sortOrder == Constant.SORT_BY_UPDATE_TIME) {
             noteList = DataSupport.where("isSecret = ?", "1").order("updateTime desc").find(Note.class);
+        }
+        if (noteList.size() == 0) {
+            tvEmpty.setVisibility(View.VISIBLE);
+        } else {
+            tvEmpty.setVisibility(View.GONE);
         }
         noteAdapter = new NoteAdapter(noteList);
         recyclerView.setAdapter(noteAdapter);
