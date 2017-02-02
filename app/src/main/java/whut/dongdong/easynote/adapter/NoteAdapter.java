@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 
 import org.litepal.crud.DataSupport;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import whut.dongdong.easynote.R;
@@ -74,13 +73,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         } else {
             Glide.with(context).load(note.getImageUrl()).into(holder.noteImage);
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        int sortOrder = SPUtil.getInt(context, Constant.SORT_ORDER);
-        if (sortOrder == -1 || sortOrder == Constant.SORT_BY_CREATE_TIME) {
-            holder.noteTime.setText(dateFormat.format(note.getCreateTime()));
-        } else if (sortOrder == Constant.SORT_BY_UPDATE_TIME) {
-            holder.noteTime.setText(dateFormat.format(note.getUpdateTime()));
-        }
+        holder.noteTitle.setText(note.getTitle());
     }
 
     @Override
@@ -115,12 +108,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView noteImage;
-        TextView noteTime;
+        TextView noteTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
             noteImage = (ImageView) itemView.findViewById(R.id.note_image);
-            noteTime = (TextView) itemView.findViewById(R.id.note_time);
+            noteTitle = (TextView) itemView.findViewById(R.id.note_title);
         }
     }
 }

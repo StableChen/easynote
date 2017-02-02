@@ -42,6 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/dialog_button_selector"
             android:gravity="center"
             android:padding="10dp"
             android:text="返回" />
@@ -56,6 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/dialog_button_selector"
             android:gravity="center"
             android:padding="10dp"
             android:text="清除" />
@@ -70,6 +72,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/dialog_button_selector"
             android:gravity="center"
             android:padding="10dp"
             android:text="确定"

@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 
 import whut.dongdong.easynote.R;
 import whut.dongdong.easynote.bean.Note;
+import whut.dongdong.easynote.common.ToastUtil;
 
 public class SetNotificationActivity extends BaseActivity {
 
@@ -58,10 +59,12 @@ public class SetNotificationActivity extends BaseActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                note.setNotifyTime(0);
-                note.save();
-                tvNotifyTime.setText("没有设置提醒");
-                cancelNotification();
+                if (note.getNotifyTime() != 0) {
+                    note.setNotifyTime(0);
+                    note.save();
+                    tvNotifyTime.setText("没有设置提醒");
+                    cancelNotification();
+                }
             }
         });
 
@@ -95,6 +98,7 @@ public class SetNotificationActivity extends BaseActivity {
         PendingIntent pendingIntent = PendingIntent
                 .getBroadcast(this, noteId, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         manager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+        ToastUtil.showToast(this, "提醒设置成功");
     }
 
     private void cancelNotification() {
@@ -104,6 +108,7 @@ public class SetNotificationActivity extends BaseActivity {
         PendingIntent pendingIntent = PendingIntent
                 .getBroadcast(this, noteId, intent, PendingIntent.FLAG_NO_CREATE);
         manager.cancel(pendingIntent);
+        ToastUtil.showToast(this, "提醒已经取消");
     }
 
 }
